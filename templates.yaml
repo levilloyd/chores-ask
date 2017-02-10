@@ -1,0 +1,5 @@
+welcome: Welcome to the Chore Chart for {{ day }}
+
+turn: It's {{ name }}'s turn to do {{ chore }}, tell them to get on it
+
+list: Here are the chores for {{ day }} {{ chores|join(", ") }}
