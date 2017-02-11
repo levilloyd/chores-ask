@@ -7,7 +7,6 @@ import datetime
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
-weekday = datetime.datetime.today().strftime("%A")
 
 #@ask.launch
 #def new_lookup():
@@ -16,11 +15,13 @@ weekday = datetime.datetime.today().strftime("%A")
 
 @ask.intent("TurnIntent", convert={'chore': str})
 def whose_turn(chore):
+    weekday = datetime.datetime.today().strftime("%A")
     msg = render_template('turn', name=CHORES[chore][weekday], chore=chore) 
     return statement(msg)
 
 @ask.intent("ListIntent")
 def list_chores():
+    weekday = datetime.datetime.today().strftime("%A")
     chore_list = []
     for chore in CHORES.keys():
         chore_list.append((chore, CHORES[chore][weekday]))
